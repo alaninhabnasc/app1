@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Empresa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #6A1B9A;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: #DDE1FF;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .logo img {
+            height: 180px;
+            width: auto;
+            max-width: 100%;
+        }
+        
+        h1 {
+            color: #6A1B9A;
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4A148C;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #6A1B9A;
+            border-radius: 12px;
+            font-size: 15px;
+            background-color: white;
+            caret-color: #4A148C;
+            color: #4A148C;
+        }
+        
+        input::placeholder {
+            color: #9C27B0;
+            opacity: 0.7;
+        }
+        
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(106, 27, 154, 0.2);
+            border-color: #4A148C;
+        }
+        
+        .login-container {
+            display: flex;
+            justify-content: center;
+            margin: 25px 0;
+        }
+        
+        .login-circle {
+            background-color: #6A1B9A;
+            color: white;
+            border-radius: 50px;
+            padding: 10px 25px;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .login-circle a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s;
+            background-color: #6A1B9A;
+            color: white;
+            flex: 1;
+        }
+        
+        .btn:hover {
+            background-color: #4A148C;
+        }
+        
+        .purple-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #6A1B9A;
+        }
+
+        /* ===== MEDIA QUERIES APENAS PARA MOBILE ===== */
+        @media (max-width: 768px) {
+            body {
+                padding: 0;
+                background-color: #DDE1FF;
+            }
+            
+            .container {
+                padding: 35px 30px; /* Aumentei o padding */
+                border-radius: 0;
+                box-shadow: none;
+                width: 100%;
+                max-width: 100%;
+                min-height: 100vh; /* Ocupa toda a altura */
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            
+            .purple-bar {
+                display: none;
+            }
+            
+            .logo {
+                margin-bottom: 5px; /* Reduzi o espaçamento inferior da logo */
+            }
+            
+            .logo img {
+                height: 200px; /* AUMENTEI MUITO: de 160px para 200px no mobile */
+                max-width: 95%; /* Permite que a logo respire nas laterais */
+            }
+            
+            h1 {
+                font-size: 22px; /* Aumentei o texto */
+                margin-bottom: 25px;
+            }
+            
+            .form-group {
+                margin-bottom: 22px;
+            }
+            
+            input {
+                padding: 14px;
+                font-size: 16px; /* Aumentei a fonte das inputs */
+            }
+            
+            .buttons {
+                flex-direction: row;
+                gap: 15px;
+                margin-top: 25px;
+            }
+            
+            .btn {
+                padding: 14px 25px; /* Botões maiores */
+                font-size: 16px;
+            }
+            
+            .login-circle {
+                padding: 12px 28px; /* Círculo de login maior */
+                font-size: 15px;
+            }
+        }
+        
+        /* Ajustes para telas muito pequenas (celulares menores) */
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 25px;
+                justify-content: flex-start; /* Alinha ao topo */
+                padding-top: 40px; /* Mais espaço no topo */
+            }
+            
+            .logo img {
+                height: 180px; /* Ainda muito grande em celulares pequenos */
+                max-width: 90%;
+            }
+            
+            h1 {
+                font-size: 20px; /* Texto grande */
+                margin-bottom: 20px;
+            }
+            
+            input {
+                padding: 13px;
+                font-size: 15px;
+            }
+            
+            .buttons {
+                gap: 12px;
+                margin-top: 20px;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 15px;
+            }
+            
+            .login-circle {
+                padding: 10px 22px;
+                font-size: 14px;
+            }
+            
+            .form-group {
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Ajuste para orientação paisagem */
+        @media (max-width: 900px) and (orientation: landscape) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                min-height: auto;
+                margin: 15px 0;
+                padding: 25px 20px;
+            }
+            
+            .logo img {
+                height: 150px; /* Logo menor em paisagem para caber tudo */
+            }
+            
+            h1 {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+            
+            .form-group {
+                margin-bottom: 15px;
+            }
+        }
+
+        /* Ajuste para tablets em modo retrato */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .logo img {
+                height: 200px; /* Logo maior em tablets também */
+            }
+            
+            h1 {
+                font-size: 22px;
+            }
+            
+            .container {
+                padding: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="purple-bar"></div>
+        
+        <div class="logo">
+            <img src="dialogx.jpeg" alt="Logo">
+        </div>
+        
+        <h1>A melhor assistência para sua empresa</h1>
+        
+        <form>
+            <div class="form-group">
+                <label>Nome da empresa</label>
+                <input type="text" placeholder="Digite o nome da empresa" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="Digite seu email" required>
+            </div>
+            
+            <div class="form-group">
+                <label>CNPJ</label>
+                <input type="text" placeholder="Digite o CNPJ" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Número de telefone</label>
+                <input type="tel" placeholder="Digite o telefone" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Senha</label>
+                <input type="password" placeholder="Crie uma senha" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Repita a senha</label>
+                <input type="password" placeholder="Repita a senha" required>
+            </div>
+            
+            <div class="login-container">
+                <div class="login-circle">
+                    Já tem conta? <a href="#">Entrar</a>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <button type="button" class="btn">Voltar</button>
+                <button type="submit" class="btn">Próximo</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
