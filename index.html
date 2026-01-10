@@ -1,158 +1,21 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro de Empresa</title>
+<form id="cadastroForm">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+  <!-- ETAPA 1 -->
+  <div class="step active" id="step1">
+    <input type="text" id="empresa" placeholder="Nome da empresa" required>
+    <input type="text" id="cnpj" placeholder="CNPJ" required>
+    <input type="email" id="email" placeholder="exemplo@email.com" required>
 
-    body {
-      background: #0A1B9A;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .container {
-      background: #fff;
-      width: 100%;
-      max-width: 420px;
-      padding: 30px;
-      border-radius: 10px;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 12px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      background: #0A1B9A;
-      color: #fff;
-      font-size: 15px;
-      cursor: pointer;
-      margin-top: 5px;
-    }
-
-    button.secondary {
-      background: #777;
-      margin-bottom: 10px;
-    }
-
-    .step {
-      display: none;
-    }
-
-    .step.active {
-      display: block;
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="container">
-    <h1>Cadastro</h1>
-
-    <form id="cadastroForm">
-
-      <!-- ETAPA 1 -->
-      <div class="step active" id="step1">
-        <input type="text" id="empresa" placeholder="Nome da empresa" required>
-        <input type="text" id="cnpj" placeholder="CNPJ" required>
-        <input type="email" id="email" placeholder="exemplo@email.com" required>
-
-        <button type="button" onclick="nextStep()">Próximo</button>
-      </div>
-
-      <!-- ETAPA 2 -->
-      <div class="step" id="step2">
-        <input type="password" id="senha" placeholder="Senha" required>
-        <input type="password" id="confirmarSenha" placeholder="Repita a senha" required>
-
-        <button type="button" class="secondary" onclick="prevStep()">Voltar</button>
-        <button type="submit">Cadastrar</button>
-      </div>
-
-    </form>
+    <button type="button" onclick="nextStep()">Próximo</button>
   </div>
 
-  <!-- NAVEGAÇÃO -->
-  <script>
-    function nextStep() {
-      document.getElementById("step1").classList.remove("active");
-      document.getElementById("step2").classList.add("active");
-    }
+  <!-- ETAPA 2 -->
+  <div class="step" id="step2">
+    <input type="password" id="senha" placeholder="Senha" required>
+    <input type="password" id="confirmarSenha" placeholder="Repita a senha" required>
 
-    function prevStep() {
-      document.getElementById("step2").classList.remove("active");
-      document.getElementById("step1").classList.add("active");
-    }
-  </script>
+    <button type="button" onclick="prevStep()">Voltar</button>
+    <button type="submit">Cadastrar</button>
+  </div>
 
-  <!-- FIREBASE -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-    const firebaseConfig = {
-      // 🔴 COLE AQUI SUA CONFIG DO FIREBASE
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-
-    document.getElementById("cadastroForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const empresa = document.getElementById("empresa").value;
-      const cnpj = document.getElementById("cnpj").value;
-      const email = document.getElementById("email").value;
-      const senha = document.getElementById("senha").value;
-      const confirmarSenha = document.getElementById("confirmarSenha").value;
-
-      if (senha !== confirmarSenha) {
-        alert("As senhas não conferem");
-        return;
-      }
-
-      try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
-        const user = userCredential.user;
-
-        await setDoc(doc(db, "usuarios", user.uid), {
-          empresa,
-          cnpj,
-          email
-        });
-
-        alert("Cadastro realizado com sucesso!");
-      } catch (error) {
-        alert(error.message);
-      }
-    });
-  </script>
-
-</body>
-</html>
+</form>
