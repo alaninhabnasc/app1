@@ -94,7 +94,7 @@
 
     <h1>A melhor assistência para sua empresa</h1>
 
-    <form id="cadastroForm">
+    <form id="cadastroForm" autocomplete="off">
         <div class="form-group">
             <label>Nome da empresa</label>
             <input id="empresa" type="text" required>
@@ -121,16 +121,12 @@
         </div>
 
         <div class="buttons">
-            <!-- VOLTAR -->
             <button type="button" class="btn" onclick="voltar()">Voltar</button>
-
-            <!-- PRÓXIMO -->
-            <button type="submit" class="btn">Próximo</button>
+            <button type="button" class="btn" onclick="proximo()">Próximo</button>
         </div>
     </form>
 </div>
 
-<!-- 🔥 FIREBASE (NÃO ALTERADO) -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
     import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
@@ -147,15 +143,11 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // FUNÇÃO VOLTAR
     window.voltar = function () {
         window.location.href = "../tela-inicial/index.html";
     };
 
-    // SUBMIT DO FORMULÁRIO
-    document.getElementById("cadastroForm").addEventListener("submit", async (e) => {
-        e.preventDefault();
-
+    window.proximo = async function () {
         await addDoc(collection(db, "empresas"), {
             empresa: empresa.value,
             email: email.value,
@@ -164,9 +156,8 @@
             criadoEm: new Date()
         });
 
-        // IR PARA A PRÓXIMA TELA
         window.location.href = "../app2/index.html";
-    });
+    };
 </script>
 
 </body>
