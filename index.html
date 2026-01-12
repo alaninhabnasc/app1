@@ -91,6 +91,24 @@
             cursor: pointer;
             font-weight: 600;
         }
+
+        /* 🔽 NOVO: área de login */
+        .login-area {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 14px;
+            color: #4A148C;
+        }
+
+        .login-area a {
+            color: #6A1B9A;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .login-area a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -112,7 +130,7 @@
 
         <div class="form-group">
             <label>Email</label>
-            <input id="email" type="email" placeholder="exemplo@email.com" required>
+            <input id="email" type="email" placeholder="exemplo@gmail.com" required>
         </div>
 
         <div class="form-group">
@@ -136,11 +154,17 @@
         </div>
 
         <div class="buttons">
-            <button type="button" class="btn">Voltar</button>
+            <button type="button" class="btn" onclick="history.back()">Voltar</button>
             <button type="submit" class="btn">Próximo</button>
         </div>
 
     </form>
+
+    <!-- 🔽 NOVO BOTÃO DE LOGIN -->
+    <div class="login-area">
+        Já tem conta?
+        <a href="../login/index.html">Fazer login</a>
+    </div>
 </div>
 
 <!-- 🔥 FIREBASE + REDIRECIONAMENTO -->
@@ -168,7 +192,6 @@
             return;
         }
 
-        // salva no Firebase
         const docRef = await addDoc(collection(db, "empresas"), {
             empresa: empresa.value,
             email: email.value,
@@ -177,10 +200,8 @@
             criadoEm: new Date()
         });
 
-        // guarda o ID para o app2
         localStorage.setItem("empresaId", docRef.id);
 
-        // vai para o app2
         window.location.href = "../app2/index.html";
     });
 </script>
