@@ -92,7 +92,6 @@
             font-weight: 600;
         }
 
-        /* 🔽 NOVO: área de login */
         .login-area {
             margin-top: 25px;
             text-align: center;
@@ -154,20 +153,25 @@
         </div>
 
         <div class="buttons">
-            <button type="button" class="btn" onclick="history.back()">Voltar</button>
+            <!-- ✅ VOLTAR PARA A TELA INICIAL -->
+            <button
+                type="button"
+                class="btn"
+                onclick="window.location.href='https://alaninhabnasc.github.io/telainicial/'">
+                Voltar
+            </button>
+
             <button type="submit" class="btn">Próximo</button>
         </div>
 
     </form>
 
-    <!-- 🔽 NOVO BOTÃO DE LOGIN -->
     <div class="login-area">
         Já tem conta?
         <a href="../login/index.html">Fazer login</a>
     </div>
 </div>
 
-<!-- 🔥 FIREBASE + REDIRECIONAMENTO -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
     import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
@@ -192,7 +196,7 @@
             return;
         }
 
-        const docRef = await addDoc(collection(db, "empresas"), {
+        await addDoc(collection(db, "empresas"), {
             empresa: empresa.value,
             email: email.value,
             cnpj: cnpj.value,
@@ -200,8 +204,7 @@
             criadoEm: new Date()
         });
 
-        localStorage.setItem("empresaId", docRef.id);
-
+        // 👉 AJUSTE SE NECESSÁRIO
         window.location.href = "../app2/index.html";
     });
 </script>
