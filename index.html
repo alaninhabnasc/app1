@@ -1,114 +1,115 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Empresa</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro de Empresa</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-        body {
-            background-color: #6A1B9A;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+body {
+    background-color: #DDE1FF; /* só o roxinho claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100svh;
+    overflow: hidden;
+}
 
-        .container {
-            background-color: #DDE1FF;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 500px;
-            padding: 40px;
-        }
+.container {
+    background-color: #DDE1FF;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 500px;
+    min-height: 100svh;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
-        .logo {
-            text-align: center;
-            margin-bottom: 10px;
-        }
+.logo {
+    text-align: center;
+    margin-bottom: 10px;
+}
 
-        .logo img {
-            height: 180px;
-            max-width: 100%;
-        }
+.logo img {
+    height: 180px;
+    max-width: 100%;
+}
 
-        h1 {
-            color: #6A1B9A;
-            font-size: 20px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
+h1 {
+    color: #6A1B9A;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
 
-        .form-group {
-            margin-bottom: 25px;
-        }
+.form-group {
+    margin-bottom: 25px;
+}
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #4A148C;
-            font-size: 14px;
-            font-weight: 600;
-        }
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #4A148C;
+    font-size: 14px;
+    font-weight: 600;
+}
 
-        input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #6A1B9A;
-            border-radius: 12px;
-            font-size: 15px;
-            background: #fff;
-            color: #000;
-        }
+input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #6A1B9A;
+    border-radius: 12px;
+    font-size: 15px;
+}
 
-        input::placeholder {
-            color: #6A1B9A;
-            opacity: 0.6;
-        }
+input::placeholder {
+    color: #6A1B9A;
+    opacity: 0.6;
+}
 
-        .buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
+.buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
 
-        .btn {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 50px;
-            background-color: #6A1B9A;
-            color: white;
-            cursor: pointer;
-            font-weight: 600;
-        }
+.btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 50px;
+    background-color: #6A1B9A;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
 
-        .login-area {
-            margin-top: 25px;
-            text-align: center;
-            font-size: 14px;
-            color: #4A148C;
-        }
+.login-area {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 14px;
+    color: #4A148C;
+}
 
-        .login-area a {
-            color: #6A1B9A;
-            font-weight: 700;
-            text-decoration: none;
-        }
+.login-area a {
+    color: #6A1B9A;
+    font-weight: 700;
+    text-decoration: none;
+}
 
-        .login-area a:hover {
-            text-decoration: underline;
-        }
-    </style>
+.login-area a:hover {
+    text-decoration: underline;
+}
+</style>
 </head>
 
 <body>
@@ -153,7 +154,6 @@
         </div>
 
         <div class="buttons">
-            <!-- ✅ VOLTAR PARA A TELA INICIAL -->
             <button
                 type="button"
                 class="btn"
@@ -173,40 +173,39 @@
 </div>
 
 <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyDek3zi1FTTRwGecaarfnAwHCpt5SWneNM",
-        authDomain: "dialogx-fd1ce.firebaseapp.com",
-        projectId: "dialogx-fd1ce",
-        storageBucket: "dialogx-fd1ce.firebasestorage.app",
-        messagingSenderId: "106113955668",
-        appId: "1:106113955668:web:5e2b53b8e9639ad90dbac1"
-    };
+const firebaseConfig = {
+    apiKey: "AIzaSyDek3zi1FTTRwGecaarfnAwHCpt5SWneNM",
+    authDomain: "dialogx-fd1ce.firebaseapp.com",
+    projectId: "dialogx-fd1ce",
+    storageBucket: "dialogx-fd1ce.firebasestorage.app",
+    messagingSenderId: "106113955668",
+    appId: "1:106113955668:web:5e2b53b8e9639ad90dbac1"
+};
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-    document.getElementById("cadastroForm").addEventListener("submit", async (e) => {
-        e.preventDefault();
+document.getElementById("cadastroForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-        if (senha.value !== confirmarSenha.value) {
-            alert("As senhas não conferem");
-            return;
-        }
+    if (senha.value !== confirmarSenha.value) {
+        alert("As senhas não conferem");
+        return;
+    }
 
-        await addDoc(collection(db, "empresas"), {
-            empresa: empresa.value,
-            email: email.value,
-            cnpj: cnpj.value,
-            telefone: telefone.value,
-            criadoEm: new Date()
-        });
-
-        // 👉 AJUSTE SE NECESSÁRIO
-        window.location.href = "../app2/index.html";
+    await addDoc(collection(db, "empresas"), {
+        empresa: empresa.value,
+        email: email.value,
+        cnpj: cnpj.value,
+        telefone: telefone.value,
+        criadoEm: new Date()
     });
+
+    window.location.href = "../app2/index.html";
+});
 </script>
 
 </body>
