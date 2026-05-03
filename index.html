@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -15,7 +16,7 @@
 
 /* DESKTOP NORMAL */
 body {
-    background-color: #6A1B9A; /* roxo escuro */
+    background-color: #6A1B9A;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,7 +26,7 @@ body {
 
 /* CONTAINER */
 .container {
-    background-color: #DDE1FF; /* roxinho claro */
+    background-color: #DDE1FF;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     width: 100%;
@@ -114,13 +115,10 @@ input::placeholder {
     text-decoration: underline;
 }
 
-/* ============================= */
-/* MOBILE / INSPECIONAR */
-/* ============================= */
+/* MOBILE */
 @media (max-width: 768px) {
-
     body {
-        background-color: #DDE1FF; /* só roxinho claro */
+        background-color: #DDE1FF;
         padding: 0;
     }
 
@@ -168,12 +166,12 @@ input::placeholder {
 
         <div class="form-group">
             <label>Senha</label>
-            <input id="senha" type="password" placeholder="Crie uma senha segura" required>
+            <input id="senha" type="password" placeholder="Crie uma senha segura" minlength="8" required>
         </div>
 
         <div class="form-group">
             <label>Repita sua senha</label>
-            <input id="confirmarSenha" type="password" placeholder="Digite a senha novamente" required>
+            <input id="confirmarSenha" type="password" placeholder="Digite a senha novamente" minlength="8" required>
         </div>
 
         <div class="buttons">
@@ -214,6 +212,16 @@ const db = getFirestore(app);
 document.getElementById("cadastroForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    const senhaValor = senha.value;
+
+    // REGEX: mínimo 8, 1 maiúscula e 1 número
+    const regexSenha = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+    if (!regexSenha.test(senhaValor)) {
+        alert("A senha deve ter no mínimo 8 caracteres, incluindo pelo menos 1 letra maiúscula e 1 número.");
+        return;
+    }
+
     if (senha.value !== confirmarSenha.value) {
         alert("As senhas não conferem");
         return;
@@ -233,3 +241,4 @@ document.getElementById("cadastroForm").addEventListener("submit", async (e) => 
 
 </body>
 </html>
+```
